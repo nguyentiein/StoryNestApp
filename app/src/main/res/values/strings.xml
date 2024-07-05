@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Shoppee clone</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_fav">Favourite</string>
+    <string name="nav_history">History</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_profile">My Profile</string>
+    <string name="nav_change_pass">Change password</string>
+    <string name="nav_dwawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="nav_signout">Sign out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="role_admin">admin</string>
+    <string name="role_user">user</string>
+
+    <string name="cf_pass_error">confirm password must be similar</string>
+    <string name="update_pass_success">User password updated</string>
+    <string name="update_pass_fail">User password update failed</string>
+    <string name="update_profile_successful">update profile successful</string>
+    <string name="update_profile_fail">update profile fail</string>
+    <string name="sign_in_fail">Your account is not exist or your password is wrong</string>
+    <string name="firebase_email_table">account</string>
+    <string name="firebase_role_table">role</string>
+    <string name="pass_constraint">Password must have at least 6 characters</string>
+    <string name="gallery">Select Picture</string>
+    <string name="no_internet_detect">Cannot connect to app because there is no internet.</string>
+    <string name="close_app">close app\n</string>
+    <string name="wait">wait\n</string>
+    <string name="no_internet">Cannot connect to the internet</string>
+    <string name="nav_cart">Cart</string>
+
+
+</resources>
