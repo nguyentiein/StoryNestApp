@@ -10,6 +10,8 @@ public class Story {
     @PrimaryKey(autoGenerate = true)
     public int storyId;
 
+    @ColumnInfo(name = "Image")
+    public String image;
     @ColumnInfo(name = "Title")
     public String title;
 
@@ -21,5 +23,12 @@ public class Story {
 
     @ColumnInfo(name = "Description")
     public String description;
+    public Story(String image,String title, String author, String genre, String description) {
+        this.image = image;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.description = description;
+    }
 }
 
