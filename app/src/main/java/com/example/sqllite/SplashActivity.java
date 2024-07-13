@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null || isNetworkAvailable(SplashActivity.this)){
             //haven't logged in
-            Intent intent = new Intent(this, SignInActivity.class);
+            Intent intent = new Intent(this, StoryActivity.class);
             startActivity(intent);
             this.finish();
         }else {
