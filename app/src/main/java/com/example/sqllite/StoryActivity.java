@@ -37,6 +37,7 @@ public class StoryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Story selectedStory = (Story) adapter.getItem(position);
                 Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
+                intent.putExtra("storyId", selectedStory.storyId);
                 intent.putExtra("storyImage", selectedStory.getImage());
                 intent.putExtra("storyTitle", selectedStory.getTitle());
                 intent.putExtra("storyAuthor", selectedStory.getAuthor());

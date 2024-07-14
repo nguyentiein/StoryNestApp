@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.core.view.GravityCompat;
@@ -79,18 +80,26 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
             StoryDao storyDao = db.storyDao();
             for (String idString : savedIds) {
             int id =Integer.parseInt(idString);
-            Story story = storyDao.getbyIdStory(id);
-            if(story!=null){
-                HistoryItem item = new HistoryItem(1, story.title, story.image, story.description);
-                historyItems.add(item);
+            try{
+                Story story = storyDao.getbyIdStory(id);
+                if(story!=null){
+                    HistoryItem item = new HistoryItem(story.storyId, story.title, story.image, story.description, story.author,story.genre);
+                    historyItems.add(item);
+                }
+            }catch (Exception e){
+                continue;
             }
+
         }
-        }else{
+        }
+        if(savedIds == null || savedIds.isEmpty() || historyItems == null || historyItems.isEmpty()){
             for (int i = 1; i <= 8; i++) {
-                String title = "Truyện số " + i;
-                String imageUrl = "https://cdn.chanhtuoi.com/uploads/2022/01/truyen-co-tich-1.jpg";
-                String description = "Description for story " + i;
-                HistoryItem item = new HistoryItem(i, title, imageUrl, description);
+                String title = "Conan Movie " + i;
+                String imageUrl = "https://www.detectiveconanworld.com/wiki/images/thumb/3/36/Detective_Conan_Movie_24.jpg/275px-Detective_Conan_Movie_24.jpg";
+                String description = "Conan, who is disquieted, sneaks into the facility and finds that a female engineer has been kidnapped" + i;
+                String author ="Phong Nguyen";
+                String genre = "10/07/2023";
+                HistoryItem item = new HistoryItem(i, title, imageUrl, description,author,genre);
                 historyItems.add(item);
             }
         }
@@ -101,6 +110,20 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         historyAdapter = new HistoryAdapter(this, historyItems);
         historyListView = findViewById(R.id.historyListView);
         historyListView.setAdapter(historyAdapter);
+        historyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                HistoryItem selectedHistoryItem = (HistoryItem) parent.getItemAtPosition(position);
+                Intent intent = new Intent(HistoryActivity.this, DetailActivity.class);
+                intent.putExtra("storyId", selectedHistoryItem.storyId);
+                intent.putExtra("storyImage", selectedHistoryItem.getImage());
+                intent.putExtra("storyTitle", selectedHistoryItem.getTitle());
+                intent.putExtra("storyDescription", selectedHistoryItem.getDescription());
+                intent.putExtra("storyAuthor", selectedHistoryItem.getAuthor());
+                intent.putExtra("storyGenre", selectedHistoryItem.getGenre());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -32,12 +32,50 @@ public class HistoryItem {
 
     @ColumnInfo(name = "description")
     public String description;
+    @ColumnInfo(name = "Author")
+    public String author;
 
-    public HistoryItem(int userId, String title, String image, String description) {
-        this.userId = userId;
+    @ColumnInfo(name = "Genre")
+    public String genre;
+    public HistoryItem(int storyId, String title, String image, String description,String author, String genre) {
+        this.storyId = storyId;
         this.title = title;
         this.image = image;
         this.description = description;
+        this.author = author;
+        this.genre = genre;
+    }
+
+    public int getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(int historyId) {
+        this.historyId = historyId;
+    }
+
+    public int getStoryId() {
+        return storyId;
+    }
+
+    public void setStoryId(int storyId) {
+        this.storyId = storyId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public int getUserId() {

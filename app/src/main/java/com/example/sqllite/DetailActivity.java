@@ -14,6 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.sqllite.Helper.StoryIdManager;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,11 +24,14 @@ public class DetailActivity extends AppCompatActivity {
     private TextView txtTitle, txtAuthor, txtDescription,txtGenre;
     private Button btnRead;
     private ImageButton btnRate, btnFa, btnShare;
+    private StoryIdManager storyIdManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
 
         // Initialize UI elements
         imgPro = findViewById(R.id.img_pro);
@@ -41,6 +47,12 @@ public class DetailActivity extends AppCompatActivity {
         // Retrieve data from intent
         Intent intent = getIntent();
         if (intent != null) {
+
+            int storyIdInt = intent.getIntExtra("storyId",1);
+            String storyId = String.valueOf(storyIdInt);
+            storyIdManager = new StoryIdManager(this);
+            storyIdManager.addStoryId(storyId);
+
             String imageUrl = intent.getStringExtra("storyImage");
             String title = intent.getStringExtra("storyTitle");
             String author = intent.getStringExtra("storyAuthor");
