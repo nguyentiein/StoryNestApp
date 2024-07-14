@@ -113,11 +113,11 @@ public class SplashActivity extends AppCompatActivity {
                     String id = snapshot.getKey();
                     DatabaseReference myRef = database.getReference(getString(R.string.firebase_role_table));
                     myRef.addChildEventListener(getRoleFromId(id));
-               }//else {
-//                    Toast.makeText(SplashActivity.this,"please signin",Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
-//                    startActivity(intent);
-//                }
+               }else {
+                    Toast.makeText(SplashActivity.this,"please signin",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override

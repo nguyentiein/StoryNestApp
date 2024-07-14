@@ -11,6 +11,7 @@ import com.example.sqllite.DAO.CategoryDAO;
 import com.example.sqllite.DAO.FirmDAO;
 import com.example.sqllite.DAO.OrderDAO;
 import com.example.sqllite.DAO.ProductDAO;
+import com.example.sqllite.DAO.StoryDao;
 import com.example.sqllite.DAO.UserDao;
 import com.example.sqllite.Models.Cart;
 import com.example.sqllite.Models.Categories;
@@ -43,7 +44,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CartDAO cartDAO();
 
     public abstract UserDao userDao();
-//    public abstract StoryDao storyDao();
+   public abstract StoryDao storyDao();
 //    public abstract ChapterDao chapterDao();
 //    public abstract RatingDao ratingDao();
 //    public abstract CommentDao commentDao();
@@ -67,4 +68,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
 }
