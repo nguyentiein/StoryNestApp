@@ -60,3 +60,4 @@ gradle/wrapper/gradle-wrapper.properties
 
 # NDK
 obj/
+.idea/workspace.xml
