@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.sqllite.DAO.OrderDAO;
 import com.example.sqllite.Models.Order;
-import com.google.gson.Gson;
 
 import java.util.List;
 

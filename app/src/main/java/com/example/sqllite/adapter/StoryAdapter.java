@@ -2,6 +2,8 @@ package com.example.sqllite.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,10 @@ import android.widget.TextView;
 import android.widget.BaseAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.sqllite.DetailStory;
 import com.example.sqllite.Models.Story;
 import com.example.sqllite.R;
+
 
 import java.util.List;
 
@@ -67,7 +71,16 @@ public class StoryAdapter extends BaseAdapter {
         Story story = stories.get(position);
 
         Glide.with(context).load(story.image).into(imageView);
-        author.setText(story.description);
+        author.setText(story.title);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailStory.class);
+                intent.putExtra("story", (Parcelable) story);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

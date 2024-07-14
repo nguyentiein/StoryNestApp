@@ -15,6 +15,15 @@
           <theme>@style/Theme.Sqllite</theme>
         </config>
       </layout>
+<<<<<<< Updated upstream
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_firm_management.xml">
+=======
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_story.xml">
+>>>>>>> Stashed changes
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_firm_management.xml">
         <config>
           <theme>@style/Theme.Sqllite</theme>
@@ -65,12 +74,32 @@
           <theme>@style/Theme.Sqllite</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/history_view.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml">
         <config>
           <theme>@style/Theme.Sqllite</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_cart.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_category.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_product.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_header_naviation.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/liststory_view.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/liststoryitem.xml">
         <config>
           <theme>@style/Theme.Sqllite</theme>
         </config>
@@ -223,6 +252,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+<<<<<<< Updated upstream
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -235,6 +265,19 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.sqllite.DAO" />
+=======
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/StoryNestApp",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="android.template.-697807086">
+      <recent name="com.example.sqllite" />
+>>>>>>> Stashed changes
     </key>
   </component>
   <component name="RunManager">
