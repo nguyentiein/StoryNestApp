@@ -41,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText edt_email, edt_password, edt_cf_password;
     private Button btnSignup;
     private ProgressBar progressBar;
+    private AppDatabase abcd;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override

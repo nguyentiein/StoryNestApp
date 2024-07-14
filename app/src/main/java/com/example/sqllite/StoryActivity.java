@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoryActivity extends AppCompatActivity {
-
+    private AppDatabase abc;
+    private AppDatabase abcd;
     private AppDatabase db;
     private StoryAdapter adapter;
 
