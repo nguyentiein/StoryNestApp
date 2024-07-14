@@ -142,7 +142,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, SignInActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

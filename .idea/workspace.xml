@@ -15,9 +15,34 @@
           <theme>@style/Theme.Sqllite</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_product_management.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml">
 <<<<<<< HEAD
 =======
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml">
+        <config>
+          <theme>@style/Theme.Sqllite</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wifi_received.xml">
         <config>
           <theme>@style/Theme.Sqllite</theme>
         </config>
@@ -69,6 +94,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c510be22-0162-4d1a-926f-0be75ae7ab38" name="Changes" comment="">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" afterDir="false" />
@@ -94,6 +120,22 @@
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
 >>>>>>> bb1e422564a1e4f7c2e33ba69921ae3a1e1e0d8a
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+=======
+    <list default="true" id="c510be22-0162-4d1a-926f-0be75ae7ab38" name="Changes" comment="login, register">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/SplashActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/UserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sqllite/UserActivity.java" afterDir="false" />
+>>>>>>> b1f134ef67c3d43d6a389bf207ff90ba247d16d0
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,8 +192,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -204,6 +246,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "tiennv",
@@ -290,6 +333,9 @@
     </configuration>
 =======
     "git-widget-placeholder": "tiennv",
+=======
+    "git-widget-placeholder": "bangtx",
+>>>>>>> b1f134ef67c3d43d6a389bf207ff90ba247d16d0
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/FPT/StoryNestApp/app",
@@ -388,8 +434,34 @@
       <option name="presentableId" value="Default" />
       <updated>1719386737233</updated>
     </task>
+    <task id="LOCAL-00001" summary="login, register">
+      <option name="closed" value="true" />
+      <created>1720938908858</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720938908858</updated>
+    </task>
+    <task id="LOCAL-00002" summary="login, register">
+      <option name="closed" value="true" />
+      <created>1720938940875</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720938940875</updated>
+    </task>
+    <task id="LOCAL-00003" summary="login, register">
+      <option name="closed" value="true" />
+      <created>1720938980518</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720938980518</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -400,5 +472,10 @@
         </entry>
       </map>
     </option>
+=======
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="login, register" />
+    <option name="LAST_COMMIT_MESSAGE" value="login, register" />
+>>>>>>> b1f134ef67c3d43d6a389bf207ff90ba247d16d0
   </component>
 </project>
