@@ -127,7 +127,8 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if (id == R.id.nav_history) {
             if (currentFragment != FRAGMENT_HISTORY){
-                replaceFragment(new HistoryFragment());
+                Intent intent = new Intent(this, HistoryActivity.class);
+                startActivity(intent);
                 currentFragment = FRAGMENT_HISTORY;
             }
         } else if (id == R.id.nav_profile) {
