@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.sqllite.DAO.CartDAO;
 import com.example.sqllite.DAO.CategoryDAO;
 import com.example.sqllite.DAO.FirmDAO;
+import com.example.sqllite.DAO.HistoryDAO;
 import com.example.sqllite.DAO.OrderDAO;
 import com.example.sqllite.DAO.ProductDAO;
 import com.example.sqllite.DAO.StoryDao;
@@ -23,6 +24,7 @@ import com.example.sqllite.Models.DataConverter;
 import com.example.sqllite.Models.Download;
 import com.example.sqllite.Models.Favorite;
 import com.example.sqllite.Models.Firm;
+import com.example.sqllite.Models.HistoryItem;
 import com.example.sqllite.Models.Order;
 import com.example.sqllite.Models.OrderDetail;
 import com.example.sqllite.Models.Products;
@@ -34,7 +36,7 @@ import com.example.sqllite.Models.UserSetting;
 
 import androidx.room.TypeConverters;
 
-@Database(entities = {Cart.class, Firm.class, Products.class, Categories.class, Customer.class, Order.class, OrderDetail.class, User.class, Story.class, Chapter.class, Rating.class, Comment.class, Favorite.class, Download.class, UserSetting.class, RatingHistory.class, CommentHistory.class}, version = 3, exportSchema = false)
+@Database(entities = {HistoryItem.class,Cart.class, Firm.class, Products.class, Categories.class, Customer.class, Order.class, OrderDetail.class, User.class, Story.class, Chapter.class, Rating.class, Comment.class, Favorite.class, Download.class, UserSetting.class, RatingHistory.class, CommentHistory.class}, version = 3, exportSchema = false)
 @TypeConverters(DataConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ProductDAO productDAO();
@@ -45,6 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
    public abstract StoryDao storyDao();
+   public abstract HistoryDAO historyDao();
 //    public abstract ChapterDao chapterDao();
 //    public abstract RatingDao ratingDao();
 //    public abstract CommentDao commentDao();

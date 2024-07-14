@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shoppee clone</string>
+    <string name="app_name">Story App</string>
     <string name="nav_home">Home</string>
     <string name="nav_fav">Favourite</string>
     <string name="nav_history">History</string>
