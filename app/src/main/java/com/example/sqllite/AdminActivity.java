@@ -44,6 +44,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private static int FRAGMENT_HISTORY = 2;
     private static int FRAGMENT_MY_PROFILE = 3;
     private static int FRAGMENT_CHANGE_PASSWORD = 4;
+    private static int FRAGMEN_CHANGE_PASSWORD = 4;
+    private static int FRAGMENT_HOME1 = 4;
+    private static int FRAGMENT_HOME2= 4;
+    private static int FRAGMENT_HOME3 = 4;
     private int currentFragment = FRAGMENT_HOME;
     private ImageView img_avatar;
     private TextView tvName, tvEmail;

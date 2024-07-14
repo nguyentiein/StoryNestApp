@@ -45,6 +45,7 @@ public class FirmManagement extends AppCompatActivity {
 
                         String firmIDText = edt_firmID.getText().toString().trim();
                         String firmName = edt_firmName.getText().toString().trim();
+                        String firmName2 = edt_firmName.getText().toString().trim();
 
                         // Kiểm tra tất cả các điều kiện nhập
                         if (firmIDText.isEmpty()) {

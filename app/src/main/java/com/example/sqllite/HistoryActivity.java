@@ -15,6 +15,7 @@ import java.util.List;
 public class HistoryActivity extends AppCompatActivity {
     private RecyclerView recyclerViewHistory;
     private HistoryAdapter historyAdapter;
+    private HistoryAdapter historyAdapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
