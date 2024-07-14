@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.BaseAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.sqllite.DetailStory;
 import com.example.sqllite.Models.Story;
 import com.example.sqllite.R;
 
@@ -76,9 +75,9 @@ public class StoryAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailStory.class);
-                intent.putExtra("story", (Parcelable) story);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, DetailStory.class);
+//                intent.putExtra("story", (Parcelable) story);
+//                context.startActivity(intent);
             }
         });
 
