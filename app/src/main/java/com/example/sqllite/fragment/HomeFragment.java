@@ -71,6 +71,10 @@ public class HomeFragment extends Fragment {
                     // neu ko co
                     newCartToAdd[0] = new Cart(product.getProductID(), product.getProductName(), 1);
 
+                    Cart checkcart = new Cart();
+                    checkcart.setCartId(1);
+                    cartDAO.insertCart(checkcart);
+
                 }
                 if (newCartToAdd[0] != null) {
                     Cart oldCart = cartDAO.checkIdCart(newCartToAdd[0].getProductId());
