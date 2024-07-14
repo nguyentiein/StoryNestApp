@@ -15,7 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
+import com.example.sqllite.DAO.StoryDao;
+import com.example.sqllite.Helper.StoryIdManager;
+import com.example.sqllite.Models.Story;
 import com.example.sqllite.fragment.CartFragment;
 import com.example.sqllite.fragment.ChangePasswordFragment;
 import com.example.sqllite.fragment.HistoryFragment;
@@ -26,9 +30,12 @@ import com.example.sqllite.adapter.HistoryAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final int MY_REQUEST_CODE = 10;
+    private AppDatabase db;
+
     private DrawerLayout drawerLayout;
     private static int FRAGMENT_HOME = 0;
     private static int FRAGMENT_CART = 1;
@@ -40,9 +47,12 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
     private HistoryAdapter historyAdapter;
     private ArrayList<HistoryItem> historyItems;
     private DrawerLayout drawer;
+    private StoryIdManager storyIdManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name-v2").build();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_view);
 
@@ -57,14 +67,36 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //get history from local
+        storyIdManager = new StoryIdManager(this);
+        List<String> savedIds = storyIdManager.getStoryIds();
+//        for (String id : savedIds) {
+//            System.out.println("Saved ID: " + id);
+//        }
         historyItems = new ArrayList<>();
-        for (int i = 1; i <= 8; i++) {
-            String title = "Truyện số " + i;
-            String imageUrl = "https://cdn.chanhtuoi.com/uploads/2022/01/truyen-co-tich-1.jpg";
-            String description = "Description for story " + i;
-            HistoryItem item = new HistoryItem(i, title, imageUrl, description);
-            historyItems.add(item);
+
+        if(savedIds.size() >0){
+            StoryDao storyDao = db.storyDao();
+            for (String idString : savedIds) {
+            int id =Integer.parseInt(idString);
+            Story story = storyDao.getbyIdStory(id);
+            if(story!=null){
+                HistoryItem item = new HistoryItem(1, story.title, story.image, story.description);
+                historyItems.add(item);
+            }
         }
+        }else{
+            for (int i = 1; i <= 8; i++) {
+                String title = "Truyện số " + i;
+                String imageUrl = "https://cdn.chanhtuoi.com/uploads/2022/01/truyen-co-tich-1.jpg";
+                String description = "Description for story " + i;
+                HistoryItem item = new HistoryItem(i, title, imageUrl, description);
+                historyItems.add(item);
+            }
+        }
+
+
+
 
         historyAdapter = new HistoryAdapter(this, historyItems);
         historyListView = findViewById(R.id.historyListView);

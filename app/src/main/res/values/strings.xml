@@ -1,4 +1,4 @@
-<resources>
+    <resources>
     <string name="app_name">Story App</string>
     <string name="nav_home">Home</string>
     <string name="nav_fav">Favourite</string>
