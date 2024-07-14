@@ -1,19 +1,36 @@
 package com.example.sqllite;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.example.sqllite.DAO.StoryDao;
+import com.example.sqllite.Models.HistoryItem;
 import com.example.sqllite.Models.Story;
+import com.example.sqllite.adapter.HistoryAdapter;
 import com.example.sqllite.adapter.StoryAdapter;
+import com.example.sqllite.fragment.CartFragment;
+import com.example.sqllite.fragment.ChangePasswordFragment;
+import com.example.sqllite.fragment.HomeFragment;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +39,30 @@ public class StoryActivity extends AppCompatActivity {
 
     private AppDatabase db;
     private StoryAdapter adapter;
+    public static final int MY_REQUEST_CODE = 10;
+    private DrawerLayout drawerLayout;
+    private static int FRAGMENT_HOME = 0;
+    private static int FRAGMENT_CART = 1;
+    private static int FRAGMENT_HISTORY = 2;
+    private static int FRAGMENT_MY_PROFILE = 3;
+    private static int FRAGMENT_CHANGE_PASSWORD = 4;
+    private int currentFragment = FRAGMENT_HOME;
+    private ImageView img_avatar;
+    private TextView tvName, tvEmail;
+    private NavigationView navigationView;
+
+    private ListView ListView;
+    private HistoryAdapter StoryAdapter;
+    private ArrayList<Story> storyItems;
+    private DrawerLayout drawer;
+
+
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +76,22 @@ public class StoryActivity extends AppCompatActivity {
         adapter = new StoryAdapter(this, new ArrayList<>());
         gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Story selectedStory = (Story) adapter.getItem(position);
-            Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
-            intent.putExtra("id", selectedStory.storyId);
-            intent.putExtra("image", selectedStory.image);
-            intent.putExtra("title", selectedStory.title);
-            intent.putExtra("author", selectedStory.author);
-            intent.putExtra("genre", selectedStory.genre);
-            intent.putExtra("description", selectedStory.description);
-            startActivity(intent);
+
+        retrieveAndDisplayStories("");
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Story selectedStory = (Story) adapter.getItem(position);
+                Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
+                intent.putExtra("storyId", selectedStory.storyId);
+                intent.putExtra("storyImage", selectedStory.getImage());
+                intent.putExtra("storyTitle", selectedStory.getTitle());
+                intent.putExtra("storyAuthor", selectedStory.getAuthor());
+                intent.putExtra("storyGenre", selectedStory.getGenre());
+                intent.putExtra("storyDescription", selectedStory.getDescription());
+                startActivity(intent);
+            }
+
         });
 
         EditText editTextSearch = findViewById(R.id.editTextSearch);
@@ -62,7 +109,7 @@ public class StoryActivity extends AppCompatActivity {
         });
 
         // Initial load of stories without any filter
-        retrieveAndDisplayStories("");
+
 
         // Thêm dữ liệu mẫu nếu cơ sở dữ liệu trống
         // Thêm dữ liệu mẫu nếu cơ sở dữ liệu trống

@@ -116,10 +116,11 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_home){
-            if (currentFragment != FRAGMENT_HOME){
-                replaceFragment(new HomeFragment());
-                currentFragment = FRAGMENT_HOME;
-            }
+
+                Intent intent = new Intent(this, StoryActivity.class);
+                startActivity(intent);
+
+
         } else if (id == R.id.nav_fav) {
             if (currentFragment != FRAGMENT_CART){
                 replaceFragment(new CartFragment());
@@ -129,7 +130,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
             if (currentFragment != FRAGMENT_HISTORY){
                 Intent intent = new Intent(this, HistoryActivity.class);
                 startActivity(intent);
-                currentFragment = FRAGMENT_HISTORY;
+
             }
         } else if (id == R.id.nav_profile) {
             if (currentFragment != FRAGMENT_MY_PROFILE){
