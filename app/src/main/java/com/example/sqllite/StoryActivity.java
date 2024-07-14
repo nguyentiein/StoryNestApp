@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import com.example.sqllite.DAO.StoryDao;
 import com.example.sqllite.Models.Story;
@@ -30,6 +31,21 @@ public class StoryActivity extends AppCompatActivity {
         GridView gridView = findViewById(R.id.gridView);
         adapter = new StoryAdapter(this, new ArrayList<>());
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Story selectedStory = (Story) adapter.getItem(position);
+                Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
+                intent.putExtra("storyImage", selectedStory.getImage());
+                intent.putExtra("storyTitle", selectedStory.getTitle());
+                intent.putExtra("storyAuthor", selectedStory.getAuthor());
+                intent.putExtra("storyGenre", selectedStory.getGenre());
+                intent.putExtra("storyDescription", selectedStory.getDescription());
+                startActivity(intent);
+            }
+        });
+
         // Thêm dữ liệu mẫu nếu cơ sở dữ liệu trống
         // Thêm dữ liệu mẫu nếu cơ sở dữ liệu trống
         new Thread(new Runnable() {

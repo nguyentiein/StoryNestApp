@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         if (user == null || isNetworkAvailable(SplashActivity.this)){
             //haven't logged in
 
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, DetailActivity.class);
 
             startActivity(intent);
             this.finish();

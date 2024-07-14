@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:id="@+id/txt_Author"
+        android:layout_width="127dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Title" />
+
+    <TextView
+        android:id="@+id/txt_Rate"
+        android:layout_width="53dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0.0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.675"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Author" />
+
+    <TextView
+        android:id="@+id/txt_Genre"
+        android:layout_width="132dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Rate" />
+
+    <ImageView
+        android:id="@+id/img_pro"
+        android:layout_width="139dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txt_Title"
+        android:layout_width="152dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="52dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnRead"
+        android:layout_width="140dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="41dp"
+        android:text="Đọc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_pro" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@android:drawable/btn_star_big_on"
+        app:layout_constraintStart_toEndOf="@+id/txt_Rate"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Author" />
+
+    <ImageButton
+        android:id="@+id/btnRate"
+        android:layout_width="46dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#F1EAEA"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintEnd_toStartOf="@+id/btnFa"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Genre" />
+
+    <ImageButton
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="28dp"
+        android:src="?attr/actionModeShareDrawable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Genre" />
+
+    <ImageButton
+        android:id="@+id/btnFa"
+        android:layout_width="42dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Genre" />
+
+    <TextView
+        android:id="@+id/textViewDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Mô tả"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRead" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="407dp"
+        android:layout_height="81dp"
+        android:paddingHorizontal="16dp"
+        android:text="Truyện kể về Gatts, hay Black Swordsman, trong cuộc đời đầy những trận chiến với số phận."
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionTitle" />
+
+    <TextView
+        android:id="@+id/textViewChaptersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="Chapter"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/chapters"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chapters"
+        android:layout_width="408dp"
+        android:layout_height="204dp"
+        android:layout_marginBottom="2dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

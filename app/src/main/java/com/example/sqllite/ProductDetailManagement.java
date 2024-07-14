@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +29,7 @@ public class ProductDetailManagement extends AppCompatActivity {
         txt_Name = findViewById(R.id.txt_name);
         txt_SupID = findViewById(R.id.txt_supid);
         txt_CateID = findViewById(R.id.txt_cateid);
-        txt_Quantity = findViewById(R.id.txt_quantity);
+        txt_Quantity = findViewById(R.id.txt_Genre);
         txt_Price = findViewById(R.id.txt_price);
         imageView = findViewById(R.id.img_pro);
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name-v2").build();
