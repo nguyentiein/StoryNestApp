@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private LinearLayout layoutForgotPassword;
     private ProgressBar progressBar;
-    private int counter = 0; //process circle
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -50,14 +49,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        initUi();
-        initListener();
+        layoutSignup = findViewById(R.id.layout_signup);
+        edtEmail = findViewById(R.id.edt_email_signin);
+        edtPassword = findViewById(R.id.edt_password_signin);
+        btnSignIn = findViewById(R.id.btn_signin);
+        layoutForgotPassword = findViewById(R.id.layout_forgot_password);
+        progressBar = findViewById(R.id.processBar_signin);
+        progressBar.setIndeterminateDrawable(new Circle());
 
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        this.registerReceiver(internetReceiver, filter);
-    }
-
-    private void initListener() {
         layoutSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,14 +73,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        layoutForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickForgotPassword();
-            }
-        });
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        this.registerReceiver(internetReceiver, filter);
     }
-
     private void hideKeyBoard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -89,61 +83,39 @@ public class LoginActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-    private void onClickForgotPassword() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        String emailAddress = "user@example.com";
-
-        auth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                        }
-                    }
-                });
-    }
-
     private void onClickSignIn() {
         progressBar.setVisibility(View.VISIBLE);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
+
+        // Kiểm tra email và mật khẩu có hợp lệ không
+        if (email.isEmpty() || password.isEmpty()) {
+
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             getHomeActivity(email);
                         } else {
-                            // If sign in fails, display a message to the user.
-                            progressBar.setVisibility(View.GONE);
-                            if (isNetworkAvailable(LoginActivity.this)){
-                                Toast.makeText(LoginActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
-
-                            }else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.sign_in_fail),
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                            String errorMessage = task.getException() != null ? task.getException().getMessage() : getString(R.string.sign_in_fail);
+                            Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
 
+
+
     private void getHomeActivity(String email) {
         DatabaseReference myRef = database.getReference(getString(R.string.firebase_email_table));
         myRef.addChildEventListener(getRoleFromName(email));
-    }
-
-    private void initUi() {
-        layoutSignup = findViewById(R.id.layout_signup);
-        edtEmail = findViewById(R.id.edt_email_signin);
-        edtPassword = findViewById(R.id.edt_password_signin);
-        btnSignIn = findViewById(R.id.btn_signin);
-        layoutForgotPassword = findViewById(R.id.layout_forgot_password);
-        progressBar = findViewById(R.id.processBar_signin);
-        progressBar.setIndeterminateDrawable(new Circle());
-
     }
 
     private ChildEventListener getRoleFromId(String id){
@@ -159,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                         finishAffinity();
                     }else {
                         progressBar.setVisibility(View.GONE);
-                        Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, StoryActivity.class);
                         startActivity(intent);
                         finishAffinity();
                     }
@@ -255,6 +227,8 @@ public class LoginActivity extends AppCompatActivity {
             return info != null && info.isConnected();
         }
     }
+
+
 
     private final BroadcastReceiver internetReceiver = new BroadcastReceiver() {
         @Override

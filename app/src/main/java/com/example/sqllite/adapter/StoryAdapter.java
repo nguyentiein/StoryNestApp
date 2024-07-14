@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.BaseAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.sqllite.DetailActivity;
 import com.example.sqllite.Models.Story;
 import com.example.sqllite.R;
 
@@ -72,13 +73,15 @@ public class StoryAdapter extends BaseAdapter {
         Glide.with(context).load(story.image).into(imageView);
         author.setText(story.title);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context, DetailStory.class);
-//                intent.putExtra("story", (Parcelable) story);
-//                context.startActivity(intent);
-            }
+        convertView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("id", story.storyId);
+            intent.putExtra("title", story.title);
+            intent.putExtra("author", story.author);
+            intent.putExtra("description", story.description);
+            intent.putExtra("genre", story.genre);
+            intent.putExtra("image", story.image);
+            context.startActivity(intent);
         });
 
         return convertView;

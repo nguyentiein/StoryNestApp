@@ -6,19 +6,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.bumptech.glide.Glide;
 
 public class DetailActivity extends AppCompatActivity {
-
     private ImageView imgPro;
-    private TextView txtTitle, txtAuthor, txtDescription,txtGenre;
+    private TextView txtTitle, txtAuthor, tvDescription, txtGenre, txtRate;
     private Button btnRead;
     private ImageButton btnRate, btnFa, btnShare;
 
@@ -32,27 +27,46 @@ public class DetailActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txt_Title);
         txtAuthor = findViewById(R.id.txt_Author);
         txtGenre = findViewById(R.id.txt_Genre);
-        txtDescription = findViewById(R.id.tv_description);
+        tvDescription = findViewById(R.id.tv_description);
+        txtRate = findViewById(R.id.txt_Rate);
         btnRead = findViewById(R.id.btnRead);
         btnRate = findViewById(R.id.btnRate);
         btnFa = findViewById(R.id.btnFa);
         btnShare = findViewById(R.id.btnShare);
 
-        // Retrieve data from intent
         Intent intent = getIntent();
-        if (intent != null) {
-            String imageUrl = intent.getStringExtra("storyImage");
-            String title = intent.getStringExtra("storyTitle");
-            String author = intent.getStringExtra("storyAuthor");
-            String genre = intent.getStringExtra("storyGenre");
-            String description = intent.getStringExtra("storyDescription");
+        int storyId = intent.getIntExtra("id", -1);
+        String title = intent.getStringExtra("title");
+        String genre = intent.getStringExtra("genre");
+        String author = intent.getStringExtra("author");
+        String content = intent.getStringExtra("description");
+        String image = intent.getStringExtra("image");
+        float rating = intent.getFloatExtra("rating", 0.0f);
 
-            // Populate UI elements with data
-            Glide.with(this).load(imageUrl).into(imgPro);
-            txtTitle.setText(title);
-            txtAuthor.setText(author);
-            txtGenre.setText(genre);
-            txtDescription.setText(description);
+        txtTitle.setText(title);
+        txtAuthor.setText(author);
+        tvDescription.setText(content);
+        txtGenre.setText(genre);
+        txtRate.setText(String.format("%.1f", rating));
+        Glide.with(this).load(image).into(imgPro);
+
+        btnRate.setOnClickListener(v -> openFeedbackActivity(storyId));
+        btnRead.setOnClickListener(v -> openReadBooktivity(genre));
+    }
+
+    private void openFeedbackActivity(int storyId) {
+        if (storyId != -1) {
+            Intent feedbackIntent = new Intent(this, FeedBackActivity.class);
+            feedbackIntent.putExtra("STORY_ID", storyId);
+            startActivity(feedbackIntent);
+        } else {
+            Toast.makeText(this, "Không thể mở trang đánh giá", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void openReadBooktivity(String bookContent) {
+        Intent readIntent = new Intent(this, ReadBookActivity.class);
+        readIntent.putExtra("BOOK_CONTENT", bookContent);
+        startActivity(readIntent);
     }
 }

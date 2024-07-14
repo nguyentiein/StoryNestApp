@@ -19,7 +19,7 @@ public class Rating {
     public int ratingId;
 
     @ColumnInfo(name = "UserID") // Đảm bảo tên cột khớp với tên trong ForeignKey và Index
-    public int userId;
+    public String userId;
 
     @ColumnInfo(name = "StoryID") // Đảm bảo tên cột khớp với tên trong ForeignKey và Index
     public int storyId;

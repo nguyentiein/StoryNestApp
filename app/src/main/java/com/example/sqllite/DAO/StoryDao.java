@@ -21,6 +21,9 @@ public interface StoryDao {
     @Query("SELECT * FROM Stories WHERE storyId = :storyId LIMIT 1")
     Story getbyIdStory(int storyId);
 
+    @Query("SELECT * FROM Stories WHERE title LIKE :name")
+    List<Story> getStoriesByName(String name);
+
     @Delete
     void deleteStory(Story story);
 }

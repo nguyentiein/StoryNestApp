@@ -4,27 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sqllite.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +26,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText edt_email, edt_password, edt_cf_password;
@@ -43,11 +36,18 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    private FirebaseAuth mAuth;
+    private AppDatabase db;
+    private ExecutorService executorService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        mAuth = FirebaseAuth.getInstance();
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name-v2").build();
+        executorService = Executors.newSingleThreadExecutor();
 
         edt_email = findViewById(R.id.edt_email_signup);
         edt_password = findViewById(R.id.edt_password_signup);
@@ -63,23 +63,29 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void initListener() {
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickSignUp();
-            }
-        });
+    private void addUserToDatabase(FirebaseUser firebaseUser) {
+        if (firebaseUser != null) {
+            executorService.execute(() -> {
+                User user = new User(
+                        firebaseUser.getUid(),
+                        firebaseUser.getEmail(),
+                        firebaseUser.getDisplayName()
+                );
+                db.userDao().insertUser(user);
+            });
+        } else {
+            runOnUiThread(() -> Toast.makeText(RegisterActivity.this, "FirebaseUser is null", Toast.LENGTH_SHORT).show());
+        }
     }
 
     private void onClickSignUp() {
         progressBar.setVisibility(View.VISIBLE);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String email = edt_email.getText().toString().trim();
         String password = edt_password.getText().toString().trim();
         String cf_password = edt_cf_password.getText().toString().trim();
-        if (!password.equals(cf_password)){
-            Toast.makeText(RegisterActivity.this,getString(R.string.cf_pass_error), Toast.LENGTH_SHORT).show();
+        if (!password.equals(cf_password)) {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(RegisterActivity.this, getString(R.string.cf_pass_error), Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -87,22 +93,19 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //add role user to account on firebase
-                            addUserToFirebase(email);
-                            // Sign in success, update UI with the signed-in user's information
-                            progressBar.setVisibility(View.GONE);
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finishAffinity();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            if (isNetworkAvailable(RegisterActivity.this)) {
-                                Toast.makeText(RegisterActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                Toast.makeText(RegisterActivity.this, getString(R.string.pass_constraint),
-                                        Toast.LENGTH_SHORT).show();
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                addUserToFirebase(email);
+                                addUserToDatabase(firebaseUser);
+                                // Sign in success, update UI with the signed-in user's information
+                                progressBar.setVisibility(View.GONE);
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finishAffinity();
                             }
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(RegisterActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -115,22 +118,13 @@ public class RegisterActivity extends AppCompatActivity {
         myRef.addChildEventListener(addRoleListener(email));
     }
 
-
-    private void initUi() {
-        edt_email = findViewById(R.id.edt_email_signup);
-        edt_password = findViewById(R.id.edt_password_signup);
-        edt_cf_password = findViewById(R.id.edt_cf_password_signup);
-        btnSignup = findViewById(R.id.btn_signup);
-        progressBar = findViewById(R.id.processBar_signup);
-    }
-
-    private ChildEventListener addRoleListener(String name){
+    private ChildEventListener addRoleListener(String name) {
         return new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if (snapshot.getValue(String.class).equals(name)){
+                if (snapshot.getValue(String.class).equals(name)) {
                     String id = snapshot.getKey();
-                    //add vao role
+                    // add role
                     DatabaseReference myRef2 = database.getReference(getString(R.string.firebase_role_table));
                     myRef2.child(id).setValue(getString(R.string.role_user));
                 }
@@ -173,53 +167,4 @@ public class RegisterActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
-    private final BroadcastReceiver internetReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Context applicationContext = context.getApplicationContext();
-            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())){
-                if (!isNetworkAvailable(context)){
-                    displayAlert();
-                }
-            }
-        }
-
-        private boolean isNetworkAvailable(Context context) {
-            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            if (manager == null){
-                return false;
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                Network network = manager.getActiveNetwork();
-                if (network == null){
-                    return false;
-                }
-                NetworkCapabilities capabilities = manager.getNetworkCapabilities(network);
-                return capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-            } else {
-                NetworkInfo info = manager.getActiveNetworkInfo();
-                return info != null && info.isConnected();
-            }
-        }
-    };
-
-    private boolean isNetworkAvailable(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (manager == null){
-            return false;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            Network network = manager.getActiveNetwork();
-            if (network == null){
-                return false;
-            }
-            NetworkCapabilities capabilities = manager.getNetworkCapabilities(network);
-            return capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-        } else {
-            NetworkInfo info = manager.getActiveNetworkInfo();
-            return info != null && info.isConnected();
-        }
-    }
-
 }

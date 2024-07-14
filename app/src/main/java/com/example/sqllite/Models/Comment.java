@@ -19,7 +19,7 @@ public class Comment {
     public int commentId;
 
     @ColumnInfo(name = "UserID") // Đảm bảo tên cột khớp với tên trong ForeignKey và Index
-    public int userId;
+    public String userId;
 
     @ColumnInfo(name = "ChapterID") // Đảm bảo tên cột khớp với tên trong ForeignKey và Index
     public int chapterId;
