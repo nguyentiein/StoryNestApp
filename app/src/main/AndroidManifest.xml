@@ -55,10 +55,10 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".UserActivity"
