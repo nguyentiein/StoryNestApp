@@ -10,17 +10,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import com.example.sqllite.Helper.StoryIdManager;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     private ImageView imgPro;
     private TextView txtTitle, txtAuthor, tvDescription, txtGenre, txtRate;
     private Button btnRead;
     private ImageButton btnRate, btnFa, btnShare;
+    private StoryIdManager storyIdManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
 
         // Initialize UI elements
         imgPro = findViewById(R.id.img_pro);
@@ -35,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         btnShare = findViewById(R.id.btnShare);
 
         Intent intent = getIntent();
+
         int storyId = intent.getIntExtra("id", -1);
         String title = intent.getStringExtra("title");
         String genre = intent.getStringExtra("genre");
@@ -42,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         String content = intent.getStringExtra("description");
         String image = intent.getStringExtra("image");
         float rating = intent.getFloatExtra("rating", 0.0f);
+
 
         txtTitle.setText(title);
         txtAuthor.setText(author);

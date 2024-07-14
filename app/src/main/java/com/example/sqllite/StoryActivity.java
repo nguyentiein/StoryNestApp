@@ -35,16 +35,21 @@ public class StoryActivity extends AppCompatActivity {
         adapter = new StoryAdapter(this, new ArrayList<>());
         gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Story selectedStory = (Story) adapter.getItem(position);
-            Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
-            intent.putExtra("id", selectedStory.storyId);
-            intent.putExtra("image", selectedStory.image);
-            intent.putExtra("title", selectedStory.title);
-            intent.putExtra("author", selectedStory.author);
-            intent.putExtra("genre", selectedStory.genre);
-            intent.putExtra("description", selectedStory.description);
-            startActivity(intent);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Story selectedStory = (Story) adapter.getItem(position);
+                Intent intent = new Intent(StoryActivity.this, DetailActivity.class);
+                intent.putExtra("storyId", selectedStory.storyId);
+                intent.putExtra("storyImage", selectedStory.getImage());
+                intent.putExtra("storyTitle", selectedStory.getTitle());
+                intent.putExtra("storyAuthor", selectedStory.getAuthor());
+                intent.putExtra("storyGenre", selectedStory.getGenre());
+                intent.putExtra("storyDescription", selectedStory.getDescription());
+                startActivity(intent);
+            }
+
         });
 
         EditText editTextSearch = findViewById(R.id.editTextSearch);
