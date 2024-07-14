@@ -52,4 +52,8 @@ public class Cart {
         this.productName = productName;
         this.quantity = quantity;
     }
+
+    public Cart(){
+
+    }
 }
