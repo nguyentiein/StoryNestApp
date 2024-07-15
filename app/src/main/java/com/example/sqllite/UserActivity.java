@@ -40,6 +40,7 @@ import com.example.sqllite.fragment.ChangePasswordFragment;
 import com.example.sqllite.fragment.HistoryFragment;
 import com.example.sqllite.fragment.HomeFragment;
 import com.example.sqllite.fragment.MyProfileFragment;
+import com.example.sqllite.fragment.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +59,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
     private ImageView img_avatar;
     private TextView tvName, tvEmail;
     private NavigationView navigationView;
-    final private MyProfileFragment fragment = new MyProfileFragment();
+    final private ProfileFragment fragment = new ProfileFragment();
     final private ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {

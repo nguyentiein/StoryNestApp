@@ -86,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             if (!isNetworkAvailable(SignUpActivity.this)) {
-                                Toast.makeText(SignUpActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.sign_in_fail), Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(SignUpActivity.this, getString(R.string.pass_constraint), Toast.LENGTH_SHORT).show();
                             }

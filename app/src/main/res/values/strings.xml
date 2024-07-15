@@ -14,7 +14,7 @@
     <string name="role_admin">admin</string>
     <string name="role_user">user</string>
 
-    <string name="cf_pass_error">confirm password must be similar</string>
+    <string name="cf_pass_error">xác nhận mật khẩu phải giống nhau</string>
     <string name="update_pass_success">User password updated</string>
     <string name="update_pass_fail">User password update failed</string>
     <string name="update_profile_successful">update profile successful</string>
@@ -27,8 +27,10 @@
     <string name="no_internet_detect">Cannot connect to app because there is no internet.</string>
     <string name="close_app">close app\n</string>
     <string name="wait">wait\n</string>
-    <string name="no_internet">Cannot connect to the internet</string>
+    <string name="tai_khoan">Đăng kí lỗi</string>
     <string name="nav_cart">Cart</string>
-
+    <string name="enter_credentials">Please enter email and password</string>
+    <string name="user_not_found">user_not_found</string>
+    <string name="database_error">database_error</string>
 
 </resources>

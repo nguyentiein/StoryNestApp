@@ -124,7 +124,7 @@ public class SignInActivity extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                             progressBar.setVisibility(View.GONE);
                             if (isNetworkAvailable(SignInActivity.this)){
-                                Toast.makeText(SignInActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, getString(R.string.sign_in_fail), Toast.LENGTH_SHORT).show();
 
                             }else {
                                 Toast.makeText(SignInActivity.this, getString(R.string.sign_in_fail),
