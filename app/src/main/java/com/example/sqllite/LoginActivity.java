@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                         finishAffinity();
                     }else {
                         progressBar.setVisibility(View.GONE);
-                        Intent intent = new Intent(LoginActivity.this, StoryActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                         startActivity(intent);
                         finishAffinity();
                     }
